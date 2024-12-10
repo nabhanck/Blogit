@@ -17,17 +17,18 @@ console.log(env);
 const app = express();
 
 const salt = bcrypt.genSaltSync(10);
-const secret = "hqweuhqwuehqwu";
+const secret = process.env.SECRET_KEY;
 
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(cookieParser());
 app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(express.json());
 
-mongoose.connect("mongodb://localhost:27017/Blogit");
+mongoose.connect(process.env.MONGO_URL);
+console.log(process.env.MONGO_URL);
 
-app.listen(5000, () => {
-  console.log("Server started");
+app.listen(process.env.PORT || 5000, () => {
+  console.log("Server started on port:", process.env.PORT);
 });
 
 // Registering a new User
