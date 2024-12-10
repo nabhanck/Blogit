@@ -24,8 +24,8 @@ app.use(cookieParser());
 app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(express.json());
 
-mongoose.connect(process.env.MONGO_URL);
-console.log(process.env.MONGO_URL);
+mongoose.connect(process.env.MONGODB_URI);
+console.log(process.env.MONGODB_URI);
 
 app.listen(process.env.PORT || 5000, () => {
   console.log("Server started on port:", process.env.PORT);
