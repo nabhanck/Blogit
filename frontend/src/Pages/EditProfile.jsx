@@ -18,12 +18,12 @@ const EditProfile = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/dp/${id}`).then((response) => {
+    fetch(`${process.env.REACT_APP_URL}/dp/${id}`).then((response) => {
       response.json().then((dp) => {
         setDp(dp);
       });
     });
-    fetch(`http://localhost:5000/profile/${id}`).then((response) => {
+    fetch(`${process.env.REACT_APP_URL}/profile/${id}`).then((response) => {
       response.json().then((info) => {
         setUsername(info.username);
         setLocation(info.location);
@@ -42,7 +42,7 @@ const EditProfile = () => {
     data.set("location", location);
     data.set("organization", organization);
     data.set("contact", contact);
-    const response = await fetch(`http://localhost:5000/dp/${id}`, {
+    const response = await fetch(`${process.env.REACT_APP_URL}/dp/${id}`, {
       method: "PUT",
       body: data,
       credentials: "include",
@@ -64,7 +64,7 @@ const EditProfile = () => {
         <div className="md:w-1/2 h-auto bg-black/30 backdrop-blur-3xl mx-auto flex md:flex-row flex-col p-6 rounded-xl ">
           <div className="flex flex-col md:items-start items-center">
             <img
-              src={`http://localhost:5000/${dp.image}`}
+              src={`${process.env.REACT_APP_URL}/${dp.image}`}
               className="md:w-[200px] md:h-[200px] h-[150px] w-[150px] rounded-full object-cover"
             />
             <input

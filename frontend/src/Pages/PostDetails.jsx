@@ -15,7 +15,7 @@ const PostDetails = () => {
   const { userInfo } = useContext(UserContext);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/post/${id}`).then((response) => {
+    fetch(`${process.env.REACT_APP_URL}/post/${id}`).then((response) => {
       response.json().then((postInfo) => {
         setDetails(postInfo);
       });
@@ -25,7 +25,7 @@ const PostDetails = () => {
   if (!details) return "";
 
   async function deletePost() {
-    const response = await fetch(`http://localhost:5000/post-delete/${id}`, {
+    const response = await fetch(`${process.env.REACT_APP_URL}/post-delete/${id}`, {
       method: "DELETE",
     }).then(setRedirect(true));
   }
@@ -48,7 +48,7 @@ const PostDetails = () => {
             ) : (
               <img
                 className="w-9 h-9 rounded-full border-black border-[0.1px] object-cover"
-                src={`http://localhost:5000/${details.author.image}`}
+                src={`${process.env.REACT_APP_URL}/${details.author.image}`}
               />
             )}
 
@@ -64,7 +64,7 @@ const PostDetails = () => {
       </div>
       <img
         className="md:h-[500px] h-[400px] object-cover rounded-lg shadow-xl mt-3"
-        src={`http://localhost:5000/${details.image}`}
+        src={`${process.env.REACT_APP_URL}/${details.image}`}
       />
       <div className="p-2 flex flex-row justify-end mt-2">
         {userInfo.id === details.author._id ? (

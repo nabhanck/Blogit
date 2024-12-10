@@ -7,7 +7,7 @@ const BlogContainer = ({ _id, author, createdAt, title, image, summary }) => {
     <Link to={`/post/${_id}`}>
       <div className="md:relative md:shadow-2xl md:bg-transparent bg-transparent backdrop-blur-3xl md:border-none border-black border-2 shadow-md shadow-black rounded-xl md:p-0 p-3">
         <img
-          src={`http://localhost:5000/${image}`}
+          src={`${process.env.REACT_APP_URL}/${image}`}
           alt="img"
           className="md:min-h-96 rounded-xl md:brightness-75 md:hover:brightness-95 object-cover"
         />
@@ -17,7 +17,7 @@ const BlogContainer = ({ _id, author, createdAt, title, image, summary }) => {
               {author.image && (
                 <img
                   className="w-6 h-6 rounded-full object-cover"
-                  src={`http://localhost:5000/${author.image}`}
+                  src={`${process.env.REACT_APP_URL}/${author.image}`}
                 />
               )}
               {!author.image && (

@@ -14,12 +14,12 @@ const Profile = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/mypost/${id}`).then((response) => {
+    fetch(`${process.env.REACT_APP_URL}/mypost/${id}`).then((response) => {
       response.json().then((posts) => {
         setPosts(posts);
       });
     });
-    fetch(`http://localhost:5000/dp/${id}`).then((response) => {
+    fetch(`${process.env.REACT_APP_URL}/dp/${id}`).then((response) => {
       response.json().then((dp) => {
         setDp(dp);
       });
@@ -30,7 +30,7 @@ const Profile = () => {
   async function uploadImage() {
     const data = new FormData();
     data.set("file", file[0]);
-    const response = await fetch(`http://localhost:5000/dp/${id}`, {
+    const response = await fetch(`${process.env.REACT_APP_URL}/dp/${id}`, {
       method: "PUT",
       body: data,
       credentials: "include",
@@ -76,7 +76,7 @@ const Profile = () => {
               {dp.image ? (
                 <img
                   className="md:w-[150px] md:h-[150px] w-[150px] h-[150px] rounded-full shadow-lg object-cover"
-                  src={`http://localhost:5000/${dp.image}`}
+                  src={`${process.env.REACT_APP_URL}/${dp.image}`}
                 />
               ) : (
                 <ion-icon
@@ -117,7 +117,7 @@ const Profile = () => {
               posts.map((item) => {
                 async function deletePost() {
                   const response = await fetch(
-                    `http://localhost:5000/post-delete/${item._id}`,
+                    `${process.env.REACT_APP_URL}/post-delete/${item._id}`,
                     {
                       method: "DELETE",
                     }
@@ -131,7 +131,7 @@ const Profile = () => {
                   <Link to={`/post/${item._id}`}>
                     <div className="w-full h-auto flex flex-row rounded-lg">
                       <img
-                        src={`http://localhost:5000/${item.image}`}
+                        src={`${process.env.REACT_APP_URL}/${item.image}`}
                         className="md:w-[250px] md:h-[200px] w-[150px] h-[140px] rounded-tl-lg rounded-bl-lg"
                       />
                       <div className="flex flex-col md:w-full w-1/2 bg-white justify-between rounded-tr-lg rounded-br-lg md:max-w-[290px] max-w-[210px]">

@@ -15,6 +15,7 @@ import PostCreate from "./Components/PostCreate";
 import PostsContainer from "./Components/PostsContainer";
 import EditProfile from "./Pages/EditProfile";
 import DeleteComment from "./Pages/DeleteComment";
+import Authors from "./Pages/Authors";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/create-post" element={<CreatePost />}></Route>
           <Route path="/edit-profile/:id" element={<EditProfile />} />
           <Route path="/comment-delete/:id" element={<DeleteComment />} />
+          <Route path="/authors" element={<Authors />} />
         </Route>
         <Route path="/create" element={<PostCreate />} />
       </Routes>

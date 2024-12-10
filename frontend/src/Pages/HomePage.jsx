@@ -4,14 +4,27 @@ import BlogContainer from "../Components/BlogContainer";
 
 const HomePage = () => {
   const [post, setPost] = useState([]);
-
+  const [records, setRecords] = useState([]);
+  // console.log(records);
+  console.log(process.env.REACT_APP_URL);
   useEffect(() => {
-    fetch("http://localhost:5000/post").then((response) => {
+    fetch(`${process.env.REACT_APP_URL}/post`).then((response) => {
       response.json().then((posts) => {
-        setPost(posts);
+        {
+          setPost(posts);
+          setRecords(posts);
+        }
       });
     });
   }, []);
+
+  const Filter = (event) => {
+    setRecords(
+      post.filter((f) =>
+        f.title.toLowerCase().includes(event.target.value.toLowerCase())
+      )
+    );
+  };
 
   // console.log(post);
 
@@ -24,8 +37,15 @@ const HomePage = () => {
         <p className="text-gray-400">
           Explore, create fun & interesting blogs ...
         </p>
+        <input
+          type="text"
+          placeholder="search by blog name"
+          onChange={Filter}
+          className="border-[2px] border-gray-400 md:px-2 px-16 py-1 rounded-lg mt-5 mb-5 md:w-[300px]"
+        />
         <div className="grid md:grid-cols-3 md:gap-12 grid-cols-1 items-center w-[90%] gap-20 mt-5 mb-10">
-          {post.length > 0 && post.map((posts) => <BlogContainer {...posts} />)}
+          {records.length > 0 &&
+            records.map((posts) => <BlogContainer {...posts} />)}
         </div>
       </div>
     </div>

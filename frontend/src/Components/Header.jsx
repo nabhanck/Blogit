@@ -14,7 +14,7 @@ const Header = () => {
   const headerId = userInfo.id;
 
   useEffect(() => {
-    fetch("http://localhost:5000/profile", {
+    fetch(`${process.env.REACT_APP_URL}/profile`, {
       credentials: "include",
     }).then((response) => {
       response.json().then((info) => {
@@ -22,18 +22,18 @@ const Header = () => {
       });
     });
 
-    fetch(`http://localhost:5000/profileheader/${headerId}`, {
-      credentials: "include",
-    }).then((response) => {
-      response.json().then((info) => {
-        setDp(info);
-      });
-    });
+    // fetch(`http://localhost:5000/profileheader/${headerId}`, {
+    //   credentials: "include",
+    // }).then((response) => {
+    //   response.json().then((info) => {
+    //     setDp(info);
+    //   });
+    // });
   }, []);
   // console.log("dp", dp);
 
   function logout() {
-    fetch("http://localhost:5000/logout", {
+    fetch(`${process.env.REACT_APP_URL}/logout`, {
       credentials: "include",
       method: "POST",
     });
@@ -92,6 +92,11 @@ const Header = () => {
               <li>
                 <Link className="hover:text-gray-500 " to={"/create-post"}>
                   Create Post
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:text-gray-500 " to={"/authors"}>
+                  Authors
                 </Link>
               </li>
             </ul>

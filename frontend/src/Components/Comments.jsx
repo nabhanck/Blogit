@@ -16,7 +16,7 @@ const Comments = ({ username }) => {
 
   async function postComment() {
     const raw = JSON.stringify({ content: content, postId: id });
-    const response = await fetch("http://localhost:5000/comment", {
+    const response = await fetch(`${process.env.REACT_APP_URL}/comment`, {
       method: "POST",
       body: raw,
       headers: { "Content-Type": "application/json" },
@@ -28,7 +28,7 @@ const Comments = ({ username }) => {
     }
   }
   useEffect(() => {
-    fetch(`http://localhost:5000/comment/${id}`).then((response) => {
+    fetch(`${process.env.REACT_APP_URL}/comment/${id}`).then((response) => {
       response.json().then((commentInfo) => {
         setComment(commentInfo);
       });
@@ -82,7 +82,7 @@ const Comments = ({ username }) => {
                   <div className="flex gap-2">
                     <img
                       className="w-8 h-8 rounded-full object-cover"
-                      src={`http://localhost:5000/${com.author.image}`}
+                      src={`${process.env.REACT_APP_URL}/${com.author.image}`}
                     />
                     <Link to={`/author/${com.author._id}`}>
                       <h5 className="text-gray-600 hover:text-gray-600 hover:font-semibold">

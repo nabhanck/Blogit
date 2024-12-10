@@ -13,7 +13,7 @@ const Register = () => {
 
   async function register(e) {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/register", {
+    const response = await fetch(`${process.env.REACT_APP_URL}/register `, {
       method: "POST",
       body: JSON.stringify({
         username,

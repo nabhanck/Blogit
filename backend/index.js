@@ -11,6 +11,8 @@ const uploadMiddleware = multer({ dest: "uploads/" });
 const fs = require("fs");
 const CommentModel = require("./models/comment.model");
 const DpModel = require("./models/dp.model");
+const env = require("dotenv").config();
+console.log(env);
 
 const app = express();
 
@@ -283,5 +285,11 @@ app.get("/author/:id", async (req, res) => {
     "username",
     "image",
   ]);
+  res.json(postDoc);
+});
+
+// Getting the authors
+app.get("/authors", async (req, res) => {
+  const postDoc = await UserModel.find();
   res.json(postDoc);
 });

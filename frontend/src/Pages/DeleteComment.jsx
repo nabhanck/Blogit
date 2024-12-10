@@ -8,7 +8,7 @@ const DeleteComment = () => {
   console.log(id);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/comment-delete/${id}`).then((data) => {
+    fetch(`${process.env.REACT_APP_URL}/comment-delete/${id}`).then((data) => {
       data.json().then((commentInfo) => {
         setComment(commentInfo);
       });
@@ -16,7 +16,7 @@ const DeleteComment = () => {
   }, []);
 
   async function deleteComment() {
-    await fetch(`http://localhost:5000/delete-comment/${id}`, {
+    await fetch(`${process.env.REACT_APP_URL}/delete-comment/${id}`, {
       method: "DELETE",
     }).then(setRedirect(true));
   }

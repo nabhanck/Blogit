@@ -19,7 +19,7 @@ const EditPost = () => {
   console.log(userInfo);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/post/${id}`).then((response) => {
+    fetch(`${process.env.REACT_APP_URL}/post/${id}`).then((response) => {
       response.json().then((postInfo) => {
         setTitle(postInfo.title);
         setSummary(postInfo.summary);
@@ -40,7 +40,7 @@ const EditPost = () => {
     if (files?.[0]) {
       data.set("file", files?.[0]);
     }
-    const response = await fetch("http://localhost:5000/edit-post", {
+    const response = await fetch(`${process.env.REACT_APP_URL}/edit-post`, {
       method: "PUT",
       body: data,
       credentials: "include",

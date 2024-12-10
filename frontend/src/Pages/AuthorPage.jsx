@@ -8,12 +8,12 @@ const AuthorPage = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/author/${id}`).then((response) => {
+    fetch(`${process.env.REACT_APP_URL}/author/${id}`).then((response) => {
       response.json().then((data) => {
         setRes(data);
       });
     });
-    fetch(`http://localhost:5000/dp/${id}`).then((response) => {
+    fetch(`${process.env.REACT_APP_URL}/dp/${id}`).then((response) => {
       response.json().then((dp) => {
         setAuthor(dp);
       });
@@ -51,12 +51,12 @@ const AuthorPage = () => {
         {!author.image ? (
           <ion-icon
             name="person-circle-outline"
-            class="text-2xl md:w-[180px] md:h-[195px] w-[120px] h-[120px] text-white"
+            class="text-2xl md:w-[180px] md:h-[180px] w-[120px] h-[120px] text-white"
           />
         ) : (
           <img
-            src={`http://localhost:5000/${author.image}`}
-            className="md:w-[180px] md:h-[195px] w-[120px] h-[120px] object-cover rounded-full shadow-xl"
+            src={`${process.env.REACT_APP_URL}/${author.image}`}
+            className="md:w-[180px] md:h-[180px] w-[120px] h-[120px] object-cover rounded-full shadow-xl"
           />
         )}
 
@@ -102,7 +102,7 @@ const AuthorPage = () => {
             <Link to={`/post/${item._id}`}>
               <div className="w-1/2 h-auto flex flex-row bg-blue-400 rounded-lg">
                 <img
-                  src={`http://localhost:5000/${item.image}`}
+                  src={`${process.env.REACT_APP_URL}/${item.image}`}
                   className="md:w-[250px] md:h-[200px] w-[150px] h-[140px] rounded-tl-lg rounded-bl-lg"
                 />
                 <div className="flex flex-col w-full bg-white justify-between rounded-tr-lg rounded-br-lg hover:bg-black hover:text-white">
